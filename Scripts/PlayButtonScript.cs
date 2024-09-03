@@ -5,13 +5,15 @@ public class PlayButtonScript : Sprite
 {
     private Texture hover_texture = GD.Load<Texture>("res://Assets/PlayHover.png");
     private Texture normal_texture = GD.Load<Texture>("res://Assets/PlayNeutral.png");
+    private Rect2 box;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         GD.Print("PlayButtonScript is ready");
+        box = new Rect2(this.Transform.origin, this.Texture.GetWidth(), this.Texture.GetHeight());
     }
 
-    private bool MouseInside(Rect2 box, Vector2 mousePosition)
+    public static bool MouseInside(Rect2 box, Vector2 mousePosition)
     {
         if (box.Position.x < mousePosition.x &&
             box.Position.y < mousePosition.y &&
@@ -31,7 +33,6 @@ public class PlayButtonScript : Sprite
     {
         if (@event is InputEventMouseMotion mouseMotion)
         {
-            Rect2 box = new Rect2(this.Transform.origin, this.Texture.GetWidth(), this.Texture.GetHeight());
 
             if (MouseInside(box, mouseMotion.Position))
             {
@@ -45,10 +46,17 @@ public class PlayButtonScript : Sprite
         }
         if (@event is InputEventMouseButton mouseButton)
         {
-            if (this.Texture.GetWidth() > mouseButton.Position.x &&
-                this.Texture.GetHeight() > mouseButton.Position.y)
+            GD.Print("clicked");
+            GD.Print(GetGlobalMousePosition());
+            if (MouseInside(box, GetGlobalMousePosition()))
             {
-                GD.Print("Play button clicked");
+                GD.Print("clicked");
+                if (mouseButton.ButtonIndex == (int)ButtonList.Left && mouseButton.Pressed)
+                {
+                    GD.Print("Play button clicked");
+                    PackedScene simultaneousScene = (PackedScene)ResourceLoader.Load("res://Scenes/Game.tscn"); // TODO magic
+                    GetTree().ChangeSceneTo(simultaneousScene);
+                }
             }
         }
     }
