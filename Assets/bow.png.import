@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TshirtOff.png-abee56cbd17279f60c677d89fa0fcfe0.stex"
+path="res://.import/bow.png-0f730b3bfbe1830445c98da84c6ee0a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TshirtOff.png"
-dest_files=[ "res://.import/TshirtOff.png-abee56cbd17279f60c677d89fa0fcfe0.stex" ]
+source_file="res://Assets/bow.png"
+dest_files=[ "res://.import/bow.png-0f730b3bfbe1830445c98da84c6ee0a7.stex" ]
 
 [params]
 

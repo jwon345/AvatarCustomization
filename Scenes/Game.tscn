@@ -1,13 +1,165 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://PreFabs/Clothing.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Avatar.png" type="Texture" id=2]
+[ext_resource path="res://Assets/bow.png" type="Texture" id=1]
+[ext_resource path="res://Assets/monocle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/cat.png" type="Texture" id=3]
+[ext_resource path="res://Assets/moustache.png" type="Texture" id=4]
+[ext_resource path="res://Assets/neck_bow.png" type="Texture" id=5]
+[ext_resource path="res://Assets/witch_hat.png" type="Texture" id=6]
+[ext_resource path="res://Assets/coat.png" type="Texture" id=7]
+[ext_resource path="res://Assets/cape.png" type="Texture" id=8]
+[ext_resource path="res://Assets/bow_tie.png" type="Texture" id=9]
+[ext_resource path="res://PreFabs/Clothe/Coat.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/tie.png" type="Texture" id=11]
+[ext_resource path="res://Assets/fish.png" type="Texture" id=12]
+[ext_resource path="res://Assets/plaid_skirt.png" type="Texture" id=13]
+[ext_resource path="res://Assets/tutu.png" type="Texture" id=14]
+[ext_resource path="res://Assets/top_hat.png" type="Texture" id=15]
+[ext_resource path="res://Assets/vest.png" type="Texture" id=16]
+[ext_resource path="res://PreFabs/Clothe/BowTie.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/AddClotheButton.cs" type="Script" id=18]
+[ext_resource path="res://PreFabs/Clothe/TopHat.tscn" type="PackedScene" id=19]
+[ext_resource path="res://PreFabs/Clothe/NeckBow.tscn" type="PackedScene" id=20]
+[ext_resource path="res://PreFabs/Clothe/Tie.tscn" type="PackedScene" id=21]
+[ext_resource path="res://PreFabs/Clothe/WitchHat.tscn" type="PackedScene" id=22]
+[ext_resource path="res://PreFabs/Clothe/Monocle.tscn" type="PackedScene" id=23]
+[ext_resource path="res://PreFabs/Clothe/Vest.tscn" type="PackedScene" id=24]
+[ext_resource path="res://PreFabs/Clothe/Moustache.tscn" type="PackedScene" id=25]
+[ext_resource path="res://PreFabs/Clothe/Bow.tscn" type="PackedScene" id=26]
+[ext_resource path="res://PreFabs/Clothe/Cape.tscn" type="PackedScene" id=27]
+[ext_resource path="res://PreFabs/Clothe/Fish.tscn" type="PackedScene" id=28]
+[ext_resource path="res://PreFabs/Clothe/PlaidSkirt.tscn" type="PackedScene" id=29]
+[ext_resource path="res://PreFabs/Clothe/Tutu.tscn" type="PackedScene" id=30]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="Sprite" parent="."]
-position = Vector2( 481, 285 )
-texture = ExtResource( 2 )
+position = Vector2( 990, 600 )
+texture = ExtResource( 3 )
 
-[node name="Clothing" parent="." instance=ExtResource( 1 )]
-position = Vector2( 196, 265 )
+[node name="ClothingPositions" type="Node" parent="Player"]
+
+[node name="HatPos" type="Position2D" parent="Player/ClothingPositions"]
+position = Vector2( 860, 155 )
+
+[node name="ShirtPos" type="Position2D" parent="Player/ClothingPositions"]
+position = Vector2( 885, 723 )
+
+[node name="MouthPos" type="Position2D" parent="Player/ClothingPositions"]
+position = Vector2( 825, 460 )
+
+[node name="PantPos" type="Position2D" parent="Player/ClothingPositions"]
+position = Vector2( 902, 860 )
+
+[node name="NeckPos" type="Position2D" parent="Player/ClothingPositions"]
+position = Vector2( 857, 690 )
+
+[node name="EyePos" type="Position2D" parent="Player/ClothingPositions"]
+position = Vector2( 939, 430 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 23.0
+margin_top = 35.0
+margin_right = 335.0
+margin_bottom = 1035.0
+scroll_horizontal_enabled = false
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer"]
+margin_right = 300.0
+margin_bottom = 3300.0
+rect_min_size = Vector2( 300, 3300 )
+
+[node name="BowTie" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 157, 81 )
+texture = ExtResource( 9 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 17 )
+
+[node name="Cape" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 149, 265 )
+scale = Vector2( 0.381323, 0.478142 )
+texture = ExtResource( 8 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 27 )
+
+[node name="Bow" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 140, 450 )
+scale = Vector2( 0.381323, 0.478142 )
+texture = ExtResource( 1 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 26 )
+
+[node name="Coat" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 154, 621 )
+scale = Vector2( 0.397906, 0.397906 )
+texture = ExtResource( 7 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 10 )
+
+[node name="Fish" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 149, 833 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 12 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 28 )
+
+[node name="PlaidSkirt" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 150, 1630 )
+scale = Vector2( 0.403378, 0.434173 )
+texture = ExtResource( 13 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 29 )
+
+[node name="TopHat" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 144.974, 2159.5 )
+scale = Vector2( 0.933674, 0.933673 )
+texture = ExtResource( 15 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 19 )
+
+[node name="Tutu" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 152, 2419 )
+scale = Vector2( 0.438342, 0.438342 )
+texture = ExtResource( 14 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 30 )
+
+[node name="Monocle" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 146, 1018 )
+scale = Vector2( 0.569767, 0.569767 )
+texture = ExtResource( 2 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 23 )
+
+[node name="Moustache" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 144, 1190 )
+texture = ExtResource( 4 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 25 )
+
+[node name="NeckBow" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 160, 1404 )
+texture = ExtResource( 5 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 20 )
+
+[node name="Tie" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 163, 1893 )
+scale = Vector2( 0.709059, 0.709059 )
+texture = ExtResource( 11 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 21 )
+
+[node name="Vest" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 159, 2655 )
+scale = Vector2( 0.48391, 0.48391 )
+texture = ExtResource( 16 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 24 )
+
+[node name="WitchHat" type="Sprite" parent="ScrollContainer/ColorRect"]
+position = Vector2( 157, 2930 )
+scale = Vector2( 0.908451, 0.908451 )
+texture = ExtResource( 6 )
+script = ExtResource( 18 )
+clothe_to_add = ExtResource( 22 )
