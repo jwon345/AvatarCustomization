@@ -4,7 +4,8 @@
 [ext_resource path="res://Scripts/ClothingScript.cs" type="Script" id=2]
 
 [node name="Fish" type="Sprite"]
-position = Vector2( 1827, 174 )
+position = Vector2( 1802, 205 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 clothing_type = 1
+clothing_offset = Vector2( 0, 28 )

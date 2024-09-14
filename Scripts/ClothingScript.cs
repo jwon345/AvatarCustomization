@@ -135,6 +135,8 @@ public class ClothingScript : Sprite
         }
 
         int highest_index = 0;
+        int highest_id = 0;
+        // :) how else
         foreach (hover_item item in hover_list)
         {
             if (item.layer > highest_index)
@@ -142,7 +144,17 @@ public class ClothingScript : Sprite
                 highest_index = item.layer;
             }
         }
-        if ((this.ZIndex >= highest_index) && (g_move_block_number == 0))
+        foreach (hover_item item in hover_list)
+        {
+            if (item.layer == highest_index)
+            {
+                if (item.id >= highest_id)
+                {
+                    highest_id = item.id;
+                }
+            }
+        }
+        if ((this.ZIndex >= highest_index) && (g_move_block_number == 0) && (this.this_id == highest_id))
         {
             return true;
         }

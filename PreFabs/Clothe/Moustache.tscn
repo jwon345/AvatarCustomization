@@ -8,3 +8,4 @@ position = Vector2( 1773, 376 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 clothing_type = 1
+clothing_offset = Vector2( -12, 0 )

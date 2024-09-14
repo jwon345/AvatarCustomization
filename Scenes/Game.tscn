@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Assets/bow.png" type="Texture" id=1]
 [ext_resource path="res://Assets/monocle.png" type="Texture" id=2]
@@ -33,6 +33,13 @@
 [ext_resource path="res://Assets/lofihiphop.ogg" type="AudioStream" id=31]
 [ext_resource path="res://Assets/select.wav" type="AudioStream" id=32]
 [ext_resource path="res://Scripts/LabelScript.cs" type="Script" id=33]
+[ext_resource path="res://Assets/SofadiOne-Regular.ttf" type="DynamicFontData" id=34]
+[ext_resource path="res://Assets/bin.png" type="Texture" id=35]
+[ext_resource path="res://Scripts/BinClearScript.cs" type="Script" id=36]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 34 )
 
 [node name="Node2D" type="Node2D"]
 
@@ -176,10 +183,18 @@ volume_db = -10.004
 pitch_scale = 0.46
 
 [node name="Label" type="Label" parent="."]
-margin_left = 762.0
-margin_top = 26.0
-margin_right = 854.0
-margin_bottom = 40.0
-rect_scale = Vector2( 5, 5 )
+margin_left = 656.0
+margin_top = 21.0
+margin_right = 1080.0
+margin_bottom = 92.0
+custom_fonts/font = SubResource( 1 )
 text = "testing testing"
 script = ExtResource( 33 )
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Bin" type="Sprite" parent="."]
+position = Vector2( 1831, 77 )
+scale = Vector2( 0.252973, 0.266055 )
+texture = ExtResource( 35 )
+script = ExtResource( 36 )
