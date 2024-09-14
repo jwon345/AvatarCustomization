@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/PlayNeutral.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlayButtonScript.cs" type="Script" id=2]
+[ext_resource path="res://Assets/lofihiphop.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/select.wav" type="AudioStream" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,3 +12,12 @@ position = Vector2( 416, 225 )
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="PlayButton"]
+stream = ExtResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]

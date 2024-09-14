@@ -54,6 +54,7 @@ public class PlayButtonScript : Sprite
                 if (mouseButton.ButtonIndex == (int)ButtonList.Left && mouseButton.Pressed)
                 {
                     GD.Print("Play button clicked");
+                    this.GetNode<AudioStreamPlayer>("SelectSound").Play();
                     PackedScene simultaneousScene = (PackedScene)ResourceLoader.Load("res://Scenes/Game.tscn"); // TODO magic
                     GetTree().ChangeSceneTo(simultaneousScene);
                 }

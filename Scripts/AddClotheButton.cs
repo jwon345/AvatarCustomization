@@ -25,6 +25,7 @@ public class AddClotheButton : Sprite
                 {
                     GD.Print("AddClotheButton clicked");
                     GetTree().Root.GetNode<Node2D>("Node2D").AddChild(clothe_to_add.Instance());
+                    GetTree().Root.GetNode<Node2D>("Node2D").GetNode<AudioStreamPlayer>("SelectSound").Play();
                 }
                 toggle = true;
             }
