@@ -43,6 +43,8 @@ public class ClothingScript : Sprite
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        Vector2 spawn_point = GetSpawnPoint(this.clothing_type);
+        this.Transform = new Transform2D(0, new Vector2(spawn_point.x, spawn_point.y));
         Vector2 topleft = this.Transform.origin - new Vector2(this.Texture.GetWidth() / 2, this.Texture.GetHeight() / 2); //Since we want to keep the origin centered. This  to get the top left corner of the sprite
         clothing_box = new Rect2(topleft, this.Texture.GetWidth(), this.Texture.GetHeight()); // define the hitbox
         counter++;
@@ -161,10 +163,31 @@ public class ClothingScript : Sprite
         return false;
     }
 
+    public Vector2 GetSpawnPoint(ClothingType clothe_type)
+    {
+        return GetClothingPoint(clothe_type);
+    }
+
     public void SnapToPoint(ClothingType type)
     {
+        Vector2 snap_point = GetClothingPoint(type);
+
+        // GD.Print("Snap point: " + snap_point);
+        // GD.Print("Clothing Type " + type);
+        //TODO make this a function
+        if (CloseToPoint(this.Transform.origin, snap_point))
+        {
+            this.Transform = new Transform2D(0, snap_point + clothing_offset);
+            // clothing_box.Position = this.Transform.origin - new Vector2(this.Texture.GetWidth() / 2, this.Texture.GetHeight() / 2);
+            UpdateClothingBox();
+            GetTree().Root.GetNode<Node2D>("Node2D").GetNode<AudioStreamPlayer>("SelectSound").Play();
+        }
+    }
+
+    private Vector2 GetClothingPoint(ClothingType clothe_type)
+    {
         Vector2 snap_point = new Vector2(0, 0);
-        switch (type)
+        switch (clothe_type)
         {
             case ClothingType.Hat:
                 snap_point = GetTree().Root.GetNode<Node2D>("Node2D").GetNode<Sprite>("Player").GetNode<Node>("ClothingPositions").GetNode<Position2D>("HatPos").Transform.origin;
@@ -191,17 +214,8 @@ public class ClothingScript : Sprite
                 snap_point = new Vector2(0, 0);
                 break;
         }
+        return snap_point;
 
-        // GD.Print("Snap point: " + snap_point);
-        // GD.Print("Clothing Type " + type);
-        //TODO make this a function
-        if (CloseToPoint(this.Transform.origin, snap_point))
-        {
-            this.Transform = new Transform2D(0, snap_point + clothing_offset);
-            // clothing_box.Position = this.Transform.origin - new Vector2(this.Texture.GetWidth() / 2, this.Texture.GetHeight() / 2);
-            UpdateClothingBox();
-            GetTree().Root.GetNode<Node2D>("Node2D").GetNode<AudioStreamPlayer>("SelectSound").Play();
-        }
     }
 
     private bool CloseToPoint(Vector2 object_pos, Vector2 snap_point, float tolerance = 100)
